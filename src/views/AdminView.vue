@@ -1,7 +1,6 @@
 <template>
   <div class="app-container">
     <div class="app-content">
-      <SideBar />
       <div class="products-section">
         <div class="products-section-header">
           <p>Dashboard</p>
@@ -92,7 +91,6 @@
 <script>
 import DashboardItem from "@/components/DashboardItem.vue";
 import DashboardCard from "@/components/DashboardCard.vue";
-import SideBar from "@/components/SideBar.vue";
 import ProductCard from "@/components/ProductCard.vue";
 // @ is an alias to /src
 
@@ -104,7 +102,6 @@ export default {
   components: {
     DashboardItem,
     DashboardCard,
-    SideBar,
     ProductCard,
   },
   methods: {

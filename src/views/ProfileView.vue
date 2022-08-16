@@ -1,7 +1,6 @@
 <template>
   <div class="app-container">
     <div class="app-content">
-      <SideBar />
       <div class="products-section">
         <div class="products-section-header" d-flex style="gap: 1rem">
           <p>My Profile</p>
@@ -32,12 +31,10 @@
 </template>
 
 <script>
-import SideBar from "@/components/SideBar.vue";
 import axios from "axios";
 
 export default {
   components: {
-    SideBar,
   },
   data() {
     return {

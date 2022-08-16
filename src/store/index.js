@@ -67,7 +67,7 @@ export default createStore({
 
     login: async (context, payload) => {
       const { email, password } = payload;
-      fetch(`https://xcjewels.herokuapp.com/users`, {
+      fetch(`https://xcjewels.herokuapp.com/users/login`, {
         method: "POST",
         body: JSON.stringify(payload),
         headers: {

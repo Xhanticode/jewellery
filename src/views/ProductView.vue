@@ -1,6 +1,5 @@
 <template>
   <div>
-    <SideBar />
     <div v-if="product" class="single-product-container">
       <div class="single-product" v-for="product of product" :key="product.id" product="product">
         <img :src="product.img" alt="" class="single-product-img" />
@@ -38,12 +37,10 @@
 </template>
 
 <script>
-import SideBar from "@/components/SideBar.vue";
 import axios from "axios";
 
 export default {
   components: {
-    SideBar,
   },
   data() {
     return {

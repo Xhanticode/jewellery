@@ -1,7 +1,8 @@
 <template>
   <div class="landing-container">
     <div class="login-overlay">
-      <LoginRegister id="login-form" />
+      <Login id="login-form" />
+      <Register id="register-form" />
       <div id="top-overlay"></div>
       <div id="bottom-overlay"></div>
     </div>
@@ -17,9 +18,6 @@
       ></iframe>
     </div> -->
     <div class="moving-products-grid">
-      <section>
-        <SideBar />
-      </section>
       <div class="cover-text">
         <h1>Spring/Summer collection '22</h1>
         <p>
@@ -90,38 +88,50 @@
 </template>
 
 <script>
-import LoginRegister from "@/components/LoginRegister.vue";
+import Login from "@/components/Login.vue";
+import Register from "@/components/Register.vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SideBar from "@/components/SideBar.vue";
 
 gsap.registerPlugin(ScrollTrigger);
 export default {
   components: {
-    LoginRegister,
-    SideBar,
-  },
+    Login,
+    Register,
+},
   mounted() {
     console.clear();
+
+    function showLogin() {
+        document.querySelector('.login-form').style.display= "block";
+        document.querySelector('.register-form').style.display= "none";
+    };
+    function showRegister() {
+        document.querySelector('#login-form').style.display= "none";
+        document.querySelector('#register-form').style.display= "block";
+    };
 
     gsap.registerPlugin(ScrollTrigger);
 
     function overlayAnimation() {
-      // let topOverlay = document.querySelector("#top-overlay");
-      // let bottomOverlay = document.querySelector("#bottom-overlay");
-      // let loginButton = document.getElementById("login-button");
-      // let loginForm = document.getElementById("login-form");
-      // let sideBar = document.querySelector(".app-sidebar");
-      // loginButton.addEventListener("click", hideOverlay);
-      // function hideOverlay() {
-      //   topOverlay.style.opacity = "0";
-      //   topOverlay.style.transform = "translateY(-1000)";
-      //   bottomOverlay.style.opacity = "0";
-      //   bottomOverlay.style.transform = "translateY(1000)";
-      //   loginForm.style.transform = "translateX(-1000), scale(0)";
-      //   loginForm.style.opacity = "0";
-      //   sideBar.style.zIndex = "2000";
-      // }
+      let loginOverlay = document.querySelector(".login-overlay");
+      let topOverlay = document.querySelector("#top-overlay");
+      let bottomOverlay = document.querySelector("#bottom-overlay");
+      let loginButton = document.getElementById("login-button");
+      let loginForm = document.getElementById("login-form");
+      let sideBar = document.querySelector(".app-sidebar");
+      loginButton.addEventListener("click", hideOverlay);
+      function hideOverlay() {
+        loginOverlay.style.display = "none";
+        loginOverlay.style.zIndex = "-5000";
+        topOverlay.style.opacity = "0";
+        topOverlay.style.transform = "translateY(-1000)";
+        bottomOverlay.style.opacity = "0";
+        bottomOverlay.style.transform = "translateY(1000)";
+        loginForm.style.transform = "translateX(-1000), scale(0)";
+        loginForm.style.opacity = "0";
+        sideBar.style.zIndex = "5000";
+      }
     }
     overlayAnimation();
 
@@ -192,6 +202,9 @@ export default {
 #login-form {
   z-index: 1000;
   transition: 3s;
+}
+#register-form {
+  display: none;
 }
 .landing-container {
   width: 100vw;
@@ -282,7 +295,7 @@ section {
 }
 .app-sidebar {
   position: absolute;
-  top: 10rem;
+  top: 30%;
   right: 2rem;
   z-index: 30;
 }

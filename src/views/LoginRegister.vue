@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import LoginRegister from "@/components/LoginRegister.vue";
+import LoginRegister from "@/components/Login.vue";
 
 export default {
   components: { LoginRegister },

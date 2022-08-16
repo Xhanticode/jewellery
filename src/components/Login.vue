@@ -12,7 +12,7 @@
       <button type="submit" id="login-button" value="Login">Login</button>
       <p>
         Don't have an account?
-        <router-link to=".register">register</router-link>
+        <button @click="showRegister" id="register-button">register</button>
       </p>
     </form>
     <div v-if="user">Welcome {{ user.fullname }}</div>
@@ -90,5 +90,8 @@ export default {
       color: white;
     }
   }
+}
+#register-button {
+  border: none;
 }
 </style>
