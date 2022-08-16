@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // import Vue from "vue";
 // import VueRouter from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import AdminView from "../views/AdminView.vue";
 import ProfileView from "../views/ProfileView.vue";
 import ProductsView from "../views/ProductsView.vue";
 import ProductView from "../views/ProductView.vue";
@@ -14,7 +14,7 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: HomeView,
+    component: LandingView,
   },
   {
     path: "/about",
@@ -48,9 +48,9 @@ const routes = [
     props: true,
   },
   {
-    path: "/landing",
-    name: "landing",
-    component: LandingView,
+    path: "/admin",
+    name: "admin",
+    component: AdminView,
   },
   {
     path: "/login",
