@@ -1,29 +1,29 @@
 <template>
   <div>
-    <!-- <form @submit.prevent="submit" class="login-form">
-      <input v-model="form.email" type="email" placeholder="Email" required />
+    <form @submit.prevent="login" class="login-form">
+      <input required v-model="email" name="user-name" type="email" placeholder="Email" />
       <input
         type="password"
         placeholder="Password"
         required
-        v-model="form.password"
+        v-model="password"
+        name="user-name"
       />
-      <button type="submit" id="login-button">Login</button>
+      <button type="submit" id="login-button" value="Login">Login</button>
       <p>
         Don't have an account?
         <router-link to=".register">register</router-link>
       </p>
     </form>
-    <p v-if="showError">Username or Password is incorrect</p>
-    <div v-if="user">welcome {{ user.fullname }}</div> -->
+    <div v-if="user">Welcome {{ user.fullname }}</div>
+    <!-- <p v-if="showError">Username or Password is incorrect</p> -->
+    
   </div>
 </template>
 
-<!-- <script>
-import { mapActions } from "vuex";
+<script>
 export default {
-  name: "LoginRegister",
-
+  props: ['users'],
   computed: {
     user() {
       return this.$store.state.user;
@@ -31,13 +31,8 @@ export default {
   },
   data() {
     return {
-      form: {
-        email: "",
-        password: "",
-        username: "",
-        full_name: "",
-      },
-      showError: false,
+      email: "",
+      password: "",
     };
   },
   methods: {
@@ -47,32 +42,9 @@ export default {
         password: this.password,
       });
     },
-    ...mapActions(["Register"]),
-    async submits() {
-      try {
-        await this.Register(this.form);
-        this.$router.push("/login");
-        this.showError = false;
-      } catch (error) {
-        this.showError = true;
-      }
-    },
-    ...mapActions(["LogIn"]),
-    async submit() {
-      const User = new FormData();
-      User.append("username", this.form.username);
-      User.append("password", this.form.password);
-      try {
-        await this.LogIn(User);
-        // this.$router.push("/products");
-        this.showError = false;
-      } catch (error) {
-        this.showError = true;
-      }
-    },
   },
 };
-</script> -->
+</script>
 
 <style lang="scss">
 .login-form {

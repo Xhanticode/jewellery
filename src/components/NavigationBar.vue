@@ -93,13 +93,13 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: "NavigationBar",
-  props: {
-    msg: String,
-  },
+  // props: {
+  //   msg: String,
+  // },
   data() {
     return {
       users: [],
@@ -108,10 +108,10 @@ export default {
     };
   },
   mounted() {
-    axios.get("https://xcjewels.herokuapp.com/users").then((response) => {
-      console.log(response.data);
-      this.products = response.data;
-    });
+    // axios.get("https://xcjewels.herokuapp.com/users").then((response) => {
+    //   console.log(response.data);
+    //   this.products = response.data;
+    // });
   },
   methods: {
     changeTheme() {
@@ -119,15 +119,15 @@ export default {
       themeSwitch.classList.toggle("active");
       document.documentElement.classList.toggle("dark");
     },
-    async logout() {
-      await this.$store.dispatch("LogOut");
-      this.$router.push("/login");
-    },
-  },
-  computed: {
-    isLoggedIn: function () {
-      return this.$store.getters.isAuthenticated;
-    },
+  //   async logout() {
+  //     await this.$store.dispatch("LogOut");
+  //     this.$router.push("/login");
+  //   },
+  // },
+  // computed: {
+  //   isLoggedIn: function () {
+  //     return this.$store.getters.isAuthenticated;
+  //   },
   },
 };
 </script>
