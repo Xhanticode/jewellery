@@ -1,5 +1,6 @@
 <template>
   <div class="app-sidebar">
+    <div class="sidebar-link">
     <router-link to="/cart" class="app-sidebar-link">
       <svg
         width="20"
@@ -9,6 +10,9 @@
         xmlns="http://www.w3.org/2000/svg"
         class="sidebar-icons"
         id="cart-icon"
+        @mouseover="hovercart = true"
+    @mouseleave="hovercart = false"
+     
       >
         <path
           class="sidebar-icons"
@@ -17,6 +21,9 @@
         />
       </svg>
     </router-link>
+    <p id="settings-det" v-if="hovercart">cart</p>
+    </div>
+    <div class="sidebar-link">
     <router-link to="/products" class="app-sidebar-link">
       <svg
         width="20"
@@ -26,6 +33,8 @@
         xmlns="http://www.w3.org/2000/svg"
         class="sidebar-icons"
         id="products-icon"
+        @mouseover="hoverproduct = true"
+    @mouseleave="hoverproduct = false"
       >
         <g clip-path="url(#clip0_1_3)">
           <path
@@ -40,7 +49,27 @@
         </defs>
       </svg>
     </router-link>
-    <div>
+    <p id="settings-det" v-if="hoverproduct">products</p>
+    </div>
+    <div class="sidebar-link">
+    <router-link to="/collection" class="app-sidebar-link">
+      <svg width="20" height="20" viewBox="0 0 436 436" fill="none" xmlns="http://www.w3.org/2000/svg" class="sidebar-icons"
+           @mouseover="hovercollection = true"
+    @mouseleave="hovercollection = false">
+<g clip-path="url(#clip0_44_2)">
+<path d="M285.542 79.4733L286.094 78.9357L291.255 73.9117L291.266 73.9014L291.277 73.8917L300.931 65.5497C305.269 61.7994 307.706 56.3364 307.602 51.0689L307.602 51.0609L307.602 51.053L307.614 50.057L307.614 50.0554C307.684 45.4407 306.13 40.9627 303.254 37.4515L285.542 79.4733ZM285.542 79.4733L286.258 79.7585C356.108 107.578 402.464 175.161 402.458 250.996C402.458 352.718 319.707 435.469 217.985 435.469C116.263 435.469 33.512 352.718 33.512 250.996C33.512 175.161 79.8679 107.584 149.719 79.7655L150.435 79.4805L149.883 78.9429L144.471 73.6679L144.46 73.6573L144.448 73.6473L135.057 65.5505C130.725 61.8117 128.286 56.3452 128.368 50.5606C128.368 50.5601 128.368 50.5596 128.368 50.5591L128.386 49.6125L128.386 49.6028L128.386 49.5932C128.304 45.4499 129.848 40.965 132.735 37.4493L132.736 37.4491L136.99 32.2641L137.003 32.2476L137.015 32.2299L153.012 8.92303C156.631 3.65267 162.61 0.5 169.009 0.5H266.985C273.377 0.5 279.357 3.64679 282.981 8.92307L282.981 8.92318L299.277 32.6372L299.289 32.6555L299.304 32.6725L303.252 37.4499L285.542 79.4733ZM159.203 88.0178L158.978 87.7989L158.683 87.9061C90.2069 112.794 44.452 177.871 44.452 250.997C44.452 346.683 122.305 424.536 217.991 424.536C313.683 424.536 391.53 346.683 391.532 250.997C391.532 177.871 345.771 112.788 277.301 87.9061L277.006 87.7989L276.781 88.0178L235.138 128.569L235.137 128.569L235.127 128.58C234.654 129.042 233.775 129.902 231.357 130.658C228.895 131.428 224.833 132.091 217.992 132.091C211.148 132.091 207.085 131.427 204.622 130.658C202.209 129.905 201.328 129.049 200.854 128.588L200.84 128.575L200.839 128.574L159.203 88.0178Z" stroke="black"/>
+</g>
+<defs>
+<clipPath id="clip0_44_2">
+<rect width="435.969" height="435.969" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+
+    </router-link>
+    <p id="settings-det" v-if="hovercollection">collection</p>
+    </div>
+    <div class="sidebar-link">
       <router-link to="/profile" class="app-sidebar-link" name="settings">
         <svg
           width="15"
@@ -50,6 +79,8 @@
           xmlns="http://www.w3.org/2000/svg"
           class="sidebar-icons"
           id="settings-icon"
+           @mouseover="hoverprofile = true"
+    @mouseleave="hoverprofile = false"
         >
           <path
             fill-rule="evenodd"
@@ -60,6 +91,7 @@
             stroke-linecap="round"
             stroke-linejoin="round"
             class="sidebar-icons"
+           
           />
           <path
             fill-rule="evenodd"
@@ -73,7 +105,7 @@
           />
         </svg>
       </router-link>
-      <h4 id="settings-det" style="display: none">Settings</h4>
+      <p id="settings-det" v-if="hoverprofile">profile</p>
     </div>
   </div>
 </template>
@@ -81,30 +113,47 @@
 <script>
 export default {
   name: "SideBar",
+  data () {
+    return {
+      hovercart: false,
+      hoverproduct: false,
+      hoverprofile: false,
+      hovercollection: false,
+      isActive: false,
+    };
+  },
   mounted() {
-    this.iconHover();
-    let settingsIcon = document.querySelector("#settings-icon");
-    let settingsDet = document.querySelector("#settings-det");
-    settingsIcon.addEventListener("hover", () => {
-      settingsIcon.style.color = "red";
-      settingsDet.style.display = "block";
-    });
+   
   },
   methods: {
-    iconHover() {
-      console.log("test");
-      // let settingsIcon = document.querySelector("#settings-icon");
-      // let settingsDet = document.querySelector("#settings-det");
-      // settingsIcon.addEventListener("hover", () => {
-      //   settingsDet.style.display = "block";
-      // });
-    },
+toggleActive (){
+  this.isActive = !this.isActive;
+}
   },
 };
 </script>
 
 <style lang="scss">
-router-link-active {
-  background-color: rgb(131, 131, 131);
+.sidebar-link {
+  display: flex;
+   flex-direction: row-reverse; 
+   justify-content: center;
+   align-items: baseline;
+   gap: 0.2rem;
+   transition: 0.5s;
+  p {
+font-style: italic;
+  }
+  & .active {
+    background-color: rgb(131, 131, 131);
+  }
+ 
 }
+ #settings-icon {
+    path {
+      stroke: var(--button-color);
+    }
+  }
+
+
 </style>

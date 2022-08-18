@@ -3,7 +3,7 @@
     <div class="app-content">
 
       
-      <div v >
+      <div v-if="products" >
       <div class="products-section-header" d-flex style="gap: 1rem">
         <div class="search-wrapper">
           <input class="search-input" type="text" v-model="search" placeholder="Search" />
@@ -44,7 +44,7 @@
           ></b-form-select>
         </div> -->
       </div>
-      <div v-if="notproducts"  class="products-grid">
+      <div v-show="!products==''"  class="products-grid">
         <ProductCard
           v-for="product of notproducts"
           :key="product.id"
@@ -52,7 +52,7 @@
           class="product-card"
         />
         </div>
-           <div v-if="products"  class="products-grid">
+           <div v-show="products"  class="products-grid">
         <ProductCard
           v-for="product of products"
           :key="product.id"
@@ -60,6 +60,7 @@
           class="product-card"
         />
         </div>
+      </div>
 
          <div v-else>
         <div class="loader loader--style2" title="1">
@@ -93,7 +94,6 @@
           </svg>
         </div>
       </div>
-      </div>
       
      
     </div>
@@ -112,7 +112,7 @@ export default {
   data() {
     return {
       search:"",
-      category:"",
+      category:'',
         title: "",
         img: "",
         thumbnail: "",

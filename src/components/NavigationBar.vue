@@ -100,15 +100,6 @@ export default {
       themeSwitch.classList.toggle("active");
       document.documentElement.classList.toggle("dark");
     },
-  //   async logout() {
-  //     await this.$store.dispatch("LogOut");
-  //     this.$router.push("/login");
-  //   },
-  // },
-  // computed: {
-  //   isLoggedIn: function () {
-  //     return this.$store.getters.isAuthenticated;
-  //   },
   },
 };
 </script>
@@ -142,6 +133,7 @@ export default {
   }
 
   &-header {
+    z-index: 20;
     display: flex;
     justify-content: space-between;
     align-items: center;

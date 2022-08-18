@@ -39,7 +39,7 @@ body {
   --secondary-color: #4a4a4a;
   --p-font: "Alumni Sans Pinstripe", sans-serif;
   --link-color: #1f1c2e;
-  --link-color-hover: #c3cff4;
+  --link-color-hover: rgba(209, 209, 209, 0.4);
   --link-color-active: #fff;
   --link-color-active-bg: #1f1c2e;
   --products-section: #fff;
@@ -49,6 +49,8 @@ body {
   --more-list-bg-hover: #f6fbff;
   --more-list-shadow: rgba(209, 209, 209, 0.4);
   --button-bg: #1f1c24;
+  --button-color: #1f1c2e;
+  --button-border-color: #1f1c2e;
   --search-area-bg: #fff;
   --star: #1ff1c2e;
   --message-btn: #fff;
@@ -65,6 +67,8 @@ body {
   --link-color-hover: rgba(195, 207, 244, 0.1);
   --link-color-active-bg: rgba(195, 207, 244, 0.2);
   --button-bg: #1f2937;
+  --button-color: #fff;
+  --button-border-color: #fff;
   --search-area-bg: #1f2937;
   --message-box-hover: #243244;
   --message-box-border: rgba(255, 255, 255, 0.1);
@@ -252,30 +256,6 @@ a {
   }
 }
 
-.add-btn {
-  color: #fff;
-  background-color: var(--button-bg);
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.notification-btn {
-  color: var(--main-color);
-  padding: 0;
-  border: 0;
-  background-color: transparent;
-  height: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .profile-btn {
   padding: 0;
   border: 0;
@@ -443,132 +423,13 @@ a {
     color: var(--link-color-active);
   }
 }
-
-// Messages
-.messages-section {
-  flex-shrink: 0;
-  padding-bottom: 32px;
-  background-color: var(--products-section);
-  margin-left: 24px;
-  flex: 1;
-  width: 100%;
-  border-radius: 30px;
-  position: relative;
-  overflow: auto;
-  transition: all 300ms cubic-bezier(0.19, 1, 0.56, 1);
-
-  .messages-close {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    z-index: 3;
-    border: none;
-    background-color: transparent;
-    color: var(--main-color);
-    display: none;
-  }
-
-  &.show {
-    transform: translateX(0);
-    opacity: 1;
-    margin-left: 0;
-  }
-
   .products-section-header {
     z-index: 1;
     padding: 32px 24px 0 24px;
     background: transparent;
     opacity: 0.5;
   }
-}
 
-.message-box {
-  border-top: 1px solid var(--message-box-border);
-  padding: 16px;
-  display: flex;
-  align-items: flex-start;
-  width: 100%;
-
-  &:hover {
-    background-color: var(--message-box-hover);
-    border-top-color: var(--link-color-hover);
-
-    + .message-box {
-      border-top-color: var(--link-color-hover);
-    }
-  }
-
-  img {
-    border-radius: 50%;
-    object-fit: cover;
-    width: 40px;
-    height: 40px;
-  }
-}
-
-.message-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-
-  .name {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 700;
-    color: var(--main-color);
-    margin: 0;
-  }
-}
-
-.message-content {
-  padding-left: 16px;
-  width: 100%;
-}
-
-.star-checkbox {
-  input {
-    opacity: 0;
-    position: absolute;
-    width: 0;
-    height: 0;
-  }
-
-  label {
-    width: 24px;
-    height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-
-  .dark & {
-    color: var(--secondary-color);
-
-    input:checked + label {
-      color: var(--star);
-    }
-  }
-
-  input:checked + label svg {
-    fill: var(--star);
-    transition: 0.2s;
-  }
-}
-
-.message-line {
-  font-size: 14px;
-  line-height: 20px;
-  margin: 8px 0;
-  color: var(--secondary-color);
-  opacity: 0.7;
-
-  &.time {
-    text-align: right;
-    margin-bottom: 0;
-  }
-}
 
 .project-boxes {
   margin: 0 -8px;

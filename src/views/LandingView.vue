@@ -327,7 +327,6 @@ img {
   width: 100%;
 }
 .moving-products-grid {
-  z-index: -1;
   position: relative;
 }
 </style>

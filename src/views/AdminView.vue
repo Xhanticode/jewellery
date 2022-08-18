@@ -192,7 +192,7 @@ body {
   --secondary-color: #4a4a4a;
   --p-font: "Alumni Sans Pinstripe", sans-serif;
   --link-color: #080809;
-  --link-color-hover: #c3cff4;
+  --link-color-hover: rgba(209, 209, 209, 0.4);
   --link-color-active: rgb(71, 71, 71);
   --header-background: #f3f6fd;
   --products-section: #fff;
