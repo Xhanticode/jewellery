@@ -2,18 +2,25 @@ import { createStore } from "vuex";
 import { toRaw } from "vue";
 export default createStore({
   state: {
+    token:null,
     user: null,
     users: null,
     product: null,
     products: null,
     asc: true,
+    jwt: null,
     cart: [],
     url: "https://xcjewels.herokuapp.com",
   },
   getters: {},
   mutations: {
+    setJwt: (state, jwt) => {
+      state.jwt = jwt;
+    },
     setUser: (state, user) => {
       state.user = user;
+    }, setToken: (state,token) => {
+      state.token = token;
     },
     setUsers: (state, users) => {
       state.users = users;
@@ -63,23 +70,41 @@ export default createStore({
         .then((json) => context.commit("setUsers", json));
     },
 
-    // LOGIN USER
+    // LOGIN USER 
 
     login: async (context, payload) => {
-      const { email, password } = payload;
-      fetch(`https://xcjewels.herokuapp.com/users/login`, {
-        method: "POST",
-        body: JSON.stringify(payload),
+      let res = await fetch("https://xcjewels.herokuapp.com/users/login", {
+        method: 'POST',
         headers: {
-          "Content-type": "application/json; charset=UTF-8",
+          "Content-Type": "application/json",
         },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          context.state.user = data.user
-        });
-    },
+        body: 
+        JSON.stringify({
+          email: payload.email,
+          password: payload.password,
+        }),
+      });
+
+      let data = await res.json()
+
+      if(data.token){
+        context.commit('setToken', data.token)
+      console.log(data)
+
+        // Verify token
+        
+        fetch('https://xcjewels.herokuapp.com/users/users/verify', {
+        
+          headers: {
+            "Content-Type": "application/json",
+            "x-auth-token": data.token
+          }
+        }).then((res) => res.json()).then((data) => {
+          console.log(data)
+          context.commit('setUser', data.user)
+          context.commit('setJwt', data.jwt)
+        })
+      }},
 
     // REGISTER USER
     register: async (context, user) => {
@@ -95,6 +120,7 @@ export default createStore({
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
+          context.commit('setJwt', data.jwt)
           // context.commit("setUser", json));
         });
     },
@@ -114,6 +140,36 @@ export default createStore({
         .then((data) => {
           console.log(data);
           context.commit("setProduct", data);
+        });
+    },
+    addProduct: async (context, product) => {
+      console.log(context.state.jwt)
+      fetch("https://xcjewels.herokuapp.com/products", {
+        method: "POST",
+        body: JSON.stringify(product),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          "x-auth-token": context.state.jwt
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data)
+          context.commit("setProduct", data)
+        });
+    },
+
+    editProduct: async(context, product) => {
+      fetch("https://xcjewels.herokuapp.com/products", {
+        method: "PATCH",
+        body: JSON.stringify(product),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data)
         });
     },
 

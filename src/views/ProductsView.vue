@@ -2,9 +2,11 @@
   <div class="app-container">
     <div class="app-content">
 
+      
+      <div v >
       <div class="products-section-header" d-flex style="gap: 1rem">
         <div class="search-wrapper">
-          <input class="search-input" type="text" placeholder="Search" />
+          <input class="search-input" type="text" v-model="search" placeholder="Search" />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -22,6 +24,17 @@
             <path d="M21 21l-4.35-4.35"></path>
           </svg>
         </div>
+        <div class="sort-options ">
+            <button class="btn btn-outline-dark ms-5" @click="sortProducts">
+              Sort By Title
+            </button>
+            <select v-model="category" class="ms-3">
+              <option value="">All</option>
+              <option value="Earrings">Earrings</option>
+              <option value="Necklace">Necklaces</option>
+              <option value="Rings">Rings</option>
+            </select>
+    </div>
         <!-- <div class="filter-wrapper">
           <b-form-select
             v-model="selected"
@@ -31,15 +44,24 @@
           ></b-form-select>
         </div> -->
       </div>
-      <div class="products-grid" v-if="products.length">
+      <div v-if="notproducts"  class="products-grid">
+        <ProductCard
+          v-for="product of notproducts"
+          :key="product.id"
+          :product="product"
+          class="product-card"
+        />
+        </div>
+           <div v-if="products"  class="products-grid">
         <ProductCard
           v-for="product of products"
           :key="product.id"
           :product="product"
           class="product-card"
         />
-      </div>
-      <div v-else>
+        </div>
+
+         <div v-else>
         <div class="loader loader--style2" title="1">
           <svg
             version="1.1"
@@ -71,82 +93,79 @@
           </svg>
         </div>
       </div>
+      </div>
+      
+     
     </div>
   </div>
 </template>
 
 <script>
 import ProductCard from "@/components/ProductCard.vue";
-import axios from "axios";
+// import axios from "axios";
 
 export default {
+  props: ["id"],
   components: {
     ProductCard,
   },
   data() {
     return {
-      products: [],
-      selected: null,
-      options: [
-        { value: null, text: "Sort" },
-        { value: "a", text: "Price" },
-        { value: "b", text: "Category" },
-        { value: { C: "3PO" }, text: "This is an option with object value" },
-        { value: "d", text: "This one is disabled", disabled: true },
-      ],
+      search:"",
+      category:"",
+        title: "",
+        img: "",
+        thumbnail: "",
+        price: "",
+        color: "",
+        description: "",
+        quantity: "",
+        category: "",
+        sku: "",
+        available: "",
     };
   },
   mounted() {
-    axios.get("https://xcjewels.herokuapp.com/products").then((response) => {
-      console.log(response.data);
-      this.products = response.data;
-    });
-    // document.querySelector(".product-card").addEventListener(
-    //     "mouseOver",
-    //     (document.querySelector("product-info").style.opacity = "1")
-    //   );
-    //   this.$store.dispatch("getProducts");
-    //   this.$store.dispatch("getUser");
-    // },
-    // computed: {
-    //   // products() {
-    //   //   return this.$store.state.products;
-    //   // },
-    //   user() {
-    //     return this.$store.state.user;
-    //   },
-    //   idArray() {
-    //     return this.products.map((product) => product.id);
-    //   },
-    // },
-    // methods: {
-    //   sortPrice() {
-    //     this.$store.commit("sortProductsByPrice");
-    //   },
-    // },
-    // created() {
-    //   // GET request using fetch with error handling
-    //   fetch("https://xcjewels.herokuapp.com/products")
-    //     .then(async (response) => {
-    //       const data = await response.json();
-    //       console.log(data);
-
-    //       // check for error response
-    //       if (!response.ok) {
-    //         // get error message from body or default to response statusText
-    //         const error = (data && data.message) || response.statusText;
-    //         return Promise.reject(error);
-    //       }
-
-    //       this.totalVuePackages = data.total;
-    //     })
-    //     .then((data) => (this.products = data));
-    //   console.log("this");
-    //   console.log("products").catch((error) => {
-    //     this.errorMessage = error;
-    //     console.error("There was an error!", error);
-    //   });
-    // },
+    this.$store.dispatch("getProducts");
+  },
+  computed: {
+    products() {
+      console.log(this.$store.state.products);
+      return this.$store.state.products?.filter((product)=>{
+        let isMatch = true;
+        if (!product.title?.toLowerCase().includes(this.search.toLowerCase()))
+          isMatch = false;
+        if (this.category !== "all" && product.category !== this.category) isMatch = false;
+        return isMatch;
+      })
+    },
+  notproducts(){
+      return this.$store.state.products;
+    },
+    product(){
+      return this.$store.state.product;
+    },
+  },
+  methods:{
+    addProduct(){
+      let product = {
+      title: this.title,
+        img: this.img,
+        thumbnail: this.thumbnail,
+        price: this.price,
+        color: this.color,
+        description: this.description,
+        quantity: this.quantity,
+        category: this.category,
+        sku: this.sku,
+        available: this.available,
+        
+      };
+      this.$store.dispatch("addProduct", product)
+    }, 
+    sortProducts(){
+      this.$store.commit("sortProductsByTitle");
+    }
   },
 };
 </script>

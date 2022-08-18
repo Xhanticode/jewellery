@@ -7,6 +7,7 @@ import ProductsView from "../views/ProductsView.vue";
 import ProductView from "../views/ProductView.vue";
 import LandingView from "../views/LandingView.vue";
 import LoginRegister from "../views/LoginRegister.vue";
+import Collection from "../views/Collection.vue";
 
 // Vue.use(VueRouter);
 
@@ -51,6 +52,16 @@ const routes = [
     path: "/admin",
     name: "admin",
     component: AdminView,
+  },
+  {
+    path: "/cart",
+    name: "cart",
+    component: ProfileView,
+  },
+  {
+    path: "/collection",
+    name: "collection",
+    component: Collection,
   },
   {
     path: "/login",

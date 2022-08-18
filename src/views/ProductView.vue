@@ -8,12 +8,12 @@
           <h3>{{ product.price }}</h3>
           <h5>{{ product.color }}</h5>
           <p>{{ product.description }}</p>
-          <div>
-            <button><svg width="20" height="20" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div class="product-buttons">
+            <router-link to="/products"><button><svg width="20" height="20" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M17.5 17.5L54.5 54.5" stroke="black" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M54.5 17.5L17.5 54.5" stroke="black" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
-</button>
+</button></router-link>
             <button><svg
         width="20"
         height="20"
@@ -45,14 +45,6 @@ export default {
   data() {
     return {
       product: [],
-      selected: null,
-      options: [
-        { value: null, text: "Sort" },
-        { value: "a", text: "Price" },
-        { value: "b", text: "Category" },
-        { value: { C: "3PO" }, text: "This is an option with object value" },
-        { value: "d", text: "This one is disabled", disabled: true },
-      ],
     };
   },
   mounted() {
@@ -62,54 +54,6 @@ export default {
         console.log(response.data);
         this.product = response.data;
       });
-    // document
-    //   .querySelector(".product-card")
-    //   .addEventListener(
-    //     "mouseOver",
-    //     (document.querySelector("product-info").style.opacity = "1")
-    //   );
-    //   this.$store.dispatch("getProducts");
-    //   this.$store.dispatch("getUser");
-    // },
-    // computed: {
-    //   // products() {
-    //   //   return this.$store.state.products;
-    //   // },
-    //   user() {
-    //     return this.$store.state.user;
-    //   },
-    //   idArray() {
-    //     return this.products.map((product) => product.id);
-    //   },
-    // },
-    // methods: {
-    //   sortPrice() {
-    //     this.$store.commit("sortProductsByPrice");
-    //   },
-    // },
-    // created() {
-    //   // GET request using fetch with error handling
-    //   fetch("https://xcjewels.herokuapp.com/products")
-    //     .then(async (response) => {
-    //       const data = await response.json();
-    //       console.log(data);
-
-    //       // check for error response
-    //       if (!response.ok) {
-    //         // get error message from body or default to response statusText
-    //         const error = (data && data.message) || response.statusText;
-    //         return Promise.reject(error);
-    //       }
-
-    //       this.totalVuePackages = data.total;
-    //     })
-    //     .then((data) => (this.products = data));
-    //   console.log("this");
-    //   console.log("products").catch((error) => {
-    //     this.errorMessage = error;
-    //     console.error("There was an error!", error);
-    //   });
-    // },
   },
 };
 </script>
@@ -162,5 +106,16 @@ export default {
 .single-product-img {
   width: 20rem;
   height: 26rem;
+}
+.product-buttons {
+  display: flex;
+  gap: 4rem;
+  button {
+    background: transparent;
+    border: none;
+    svg {
+      background: transparent;
+    }
+  }
 }
 </style>

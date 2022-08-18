@@ -5,17 +5,12 @@
         <div class="products-section-header" d-flex style="gap: 1rem">
           <p>My Profile</p>
         </div>
-        <div
-          class="profile-content"
-          v-for="user of user"
-          :key="user.id"
-          user="user"
-        >
-          <div class="image-side">
+    
+          <div v-if="user" class="image-side">
             <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" />
             <span>{{ user.name }}</span>
           </div>
-          <div class="info-side">
+          <div v-if="user" class="info-side">
             <h4>General</h4>
             <input type="text" :placeholder="user.fullname" />
             <input type="password" placeholder="Password" />
@@ -27,7 +22,7 @@
         </div>
       </div>
     </div>
-  </div>
+  
 </template>
 
 <script>
@@ -38,18 +33,13 @@ export default {
   },
   data() {
     return {
-      user: [],
+      // user: [],
     };
   },
-  mounted() {
-    axios.get("https://xcjewels.herokuapp.com/users").then((response) => {
-      console.log(response.data);
-      this.user = response.data;
-    });
-    // axios.get("https://xcjewels.herokuapp.com/users/" + this.$route.params.id).then((response) => {
-    //     console.log(response.data);
-    //     this.user = response.data;
-    //   });
+  computed: {
+    user() {
+      return this.$store.state.user
+    }
   },
 };
 </script>

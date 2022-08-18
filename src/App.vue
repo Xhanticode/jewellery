@@ -33,6 +33,7 @@ body {
 }
 
 :root {
+  --logo-color: #1f1c2e;
   --app-container: #f3f6fd;
   --main-color: #1f1c2e;
   --secondary-color: #4a4a4a;
@@ -54,6 +55,7 @@ body {
 }
 
 .dark:root {
+   --logo-color: #fff;
   --app-container: #1f1d2b;
   --app-container: #black;
   --main-color: #fff;
@@ -152,6 +154,10 @@ a {
 
     &-left {
       flex-grow: 1;
+      a {
+        text-decoration: none;
+        color: var(--logo-color);
+      }
     }
 
     &-right button {

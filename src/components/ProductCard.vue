@@ -1,4 +1,5 @@
 <template>
+<router-link  :to="{ name: 'product', params: { id: product.id } }">
   <div class="product-card">
     <img
       :src="product.img"
@@ -10,7 +11,7 @@
       <p>Price R{{ product.price }}</p>
     </div>
 
-    <router-link to="/"
+    <router-link :to="{ name: 'product', params: { id: product.id } }"
       ><button>
         <svg
           width="15"
@@ -34,6 +35,7 @@
         </svg></button
     ></router-link>
   </div>
+  </router-link>
 </template>
 
 <script>

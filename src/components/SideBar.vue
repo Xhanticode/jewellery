@@ -1,6 +1,6 @@
 <template>
   <div class="app-sidebar">
-    <router-link to="/" class="app-sidebar-link">
+    <router-link to="/cart" class="app-sidebar-link">
       <svg
         width="20"
         height="20"

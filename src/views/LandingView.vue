@@ -1,29 +1,17 @@
 <template>
   <div class="landing-container">
-    <div class="login-overlay">
+    <div v-if="!user" class="login-overlay">
       <Login id="login-form" />
-      <Register id="register-form" />
       <div id="top-overlay"></div>
       <div id="bottom-overlay"></div>
     </div>
-    <!-- <div class="video">
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/yeC7hI7S7es?start=8&autoplay=1&showinfo=0&controls=0&autohide=1"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe>
-    </div> -->
     <div class="moving-products-grid">
       <div class="cover-text">
         <h1>Spring/Summer collection '22</h1>
         <p>
           browse our luxury spring/summer 2022 capsule collection available only
           at selected stores.
-          <span
+          <router-link to="/collection"><span
             ><svg
               width="20"
               height="20"
@@ -36,7 +24,7 @@
                 fill="#010002"
               />
             </svg>
-          </span>
+          </span></router-link>
         </p>
       </div>
       <div class="gallery">
@@ -71,19 +59,26 @@
           </div>
         </div>
         <div class="col">
+          <!-- <div
+            class="image"
+            v-for="product in 3"
+            :key="product.id"
+            :product="product"
+          >
+            <img :src="product.img" alt="" />
+          </div> -->
           <div class="image">
-            <img src="https://postimg.cc/Jt1pp19L" alt="" />
+            <img src="https://i.postimg.cc/d1BGQ8h8/IMG-4790.jpg" alt="" />
           </div>
           <div class="image">
-            <img src="https://postimg.cc/gnttwftP" alt="" />
+            <img src="https://i.postimg.cc/9X15LcvR/IMG-4774.jpg" alt="" />
           </div>
           <div class="image">
-            <img src="hhttps://postimg.cc/Jt1pp19L" alt="" />
+            <img src="https://postimg.cc/D8w1X0RS" alt="" />
           </div>
         </div>
       </div>
     </div>
-    <div class="static-products-grid"></div>
   </div>
 </template>
 
@@ -99,41 +94,41 @@ export default {
     Login,
     Register,
 },
+computed: {
+  user() {
+      return this.$store.state.user;
+    },
+},
   mounted() {
     console.clear();
 
-    function showLogin() {
-        document.querySelector('.login-form').style.display= "block";
-        document.querySelector('.register-form').style.display= "none";
-    };
-    function showRegister() {
-        document.querySelector('#login-form').style.display= "none";
-        document.querySelector('#register-form').style.display= "block";
-    };
-
     gsap.registerPlugin(ScrollTrigger);
 
-    function overlayAnimation() {
-      let loginOverlay = document.querySelector(".login-overlay");
-      let topOverlay = document.querySelector("#top-overlay");
-      let bottomOverlay = document.querySelector("#bottom-overlay");
-      let loginButton = document.getElementById("login-button");
-      let loginForm = document.getElementById("login-form");
-      let sideBar = document.querySelector(".app-sidebar");
-      loginButton.addEventListener("click", hideOverlay);
-      function hideOverlay() {
-        loginOverlay.style.display = "none";
-        loginOverlay.style.zIndex = "-5000";
-        topOverlay.style.opacity = "0";
-        topOverlay.style.transform = "translateY(-1000)";
-        bottomOverlay.style.opacity = "0";
-        bottomOverlay.style.transform = "translateY(1000)";
-        loginForm.style.transform = "translateX(-1000), scale(0)";
-        loginForm.style.opacity = "0";
-        sideBar.style.zIndex = "5000";
-      }
-    }
-    overlayAnimation();
+    // user() {
+    //   return this.$store.state.user;
+    // }
+
+    // if(user) {function overlayAnimation() {
+    //   let loginOverlay = document.querySelector(".login-overlay");
+    //   let topOverlay = document.querySelector("#top-overlay");
+    //   let bottomOverlay = document.querySelector("#bottom-overlay");
+    //   let loginButton = document.getElementById("login-button");
+    //   let loginForm = document.getElementById("login-form");
+    //   let sideBar = document.querySelector(".app-sidebar");
+    //   loginButton.addEventListener("click", hideOverlay);
+    //   function hideOverlay() {
+    //     loginOverlay.style.display = "none";
+    //     loginOverlay.style.zIndex = "-5000";
+    //     topOverlay.style.opacity = "0";
+    //     topOverlay.style.transform = "translateY(-1000)";
+    //     bottomOverlay.style.opacity = "0";
+    //     bottomOverlay.style.transform = "translateY(1000)";
+    //     loginForm.style.transform = "translateX(-1000), scale(0)";
+    //     loginForm.style.opacity = "0";
+    //     sideBar.style.zIndex = "5000";
+    //   }
+    // }
+    // overlayAnimation();}
 
     const additionalY = { val: 0 };
     let additionalYAnim;
@@ -203,9 +198,6 @@ export default {
   z-index: 1000;
   transition: 3s;
 }
-#register-form {
-  display: none;
-}
 .landing-container {
   width: 100vw;
   height: 100vh;
@@ -220,6 +212,7 @@ export default {
   justify-content: center;
   align-items: center;
   top: 0;
+  transition: 2s;
 }
 #top-overlay {
   top: 0;
@@ -332,10 +325,6 @@ img {
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
   width: 100%;
-}
-.video {
-  z-index: 10;
-  position: relative;
 }
 .moving-products-grid {
   z-index: -1;

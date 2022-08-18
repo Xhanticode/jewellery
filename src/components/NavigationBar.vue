@@ -1,7 +1,7 @@
 <template>
   <div class="app-header">
     <div class="app-header-left">
-      <p class="app-name">
+      <router-link to="/"><p class="app-name">
         <svg
           width="27"
           height="27"
@@ -15,26 +15,7 @@
           />
         </svg>
         Jewels
-      </p>
-      <!-- <div class="search-wrapper">
-        <input class="search-input" type="text" placeholder="Search" />
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          class="feather feather-search"
-          viewBox="0 0 24 24"
-        >
-          <defs></defs>
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="M21 21l-4.35-4.35"></path>
-        </svg>
-      </div> -->
+      </p></router-link>
     </div>
     <div class="app-header-right">
       <button class="mode-switch" title="Switch Theme" @click="changeTheme">
@@ -177,6 +158,9 @@ export default {
 
     &-left {
       flex-grow: 1;
+      a {
+        text-decoration: none;
+      }
     }
 
     &-right button {
