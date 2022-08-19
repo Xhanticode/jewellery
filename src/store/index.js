@@ -119,7 +119,9 @@ export default createStore({
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          context.commit('setJwt', data.jwt)
+          context.commit('setUser', data.user)
+          context.state.jwt = data.token;
+          // context.commit('setJwt', data.jwt)
         });
     },
 

@@ -19,7 +19,7 @@
     </form>
 
     <!-- Register Form -->
-     <form @submit.prevent="submit" class="register-form">
+     <form @submit.prevent="register" class="register-form">
           <div>
             <label for="fullname">Full Name:</label>
             <input type="text" name="fullname" required v-model="fullname" />
@@ -33,8 +33,12 @@
             <input type="password" name="password" required v-model="password" />
           </div>
           <div>
-            <label for="password">Phone:</label>
+            <label for="phone">Phone:</label>
             <input type="text" name="phone" required v-model="phone" />
+          </div>
+          <div>
+            <label for="userRole">Role:</label>
+            <input type="text" name="userRole" required v-model="userRole" />
           </div>
           <button type="submit" value="Register">Submit</button>
           <p>
