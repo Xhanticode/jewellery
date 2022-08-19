@@ -109,7 +109,6 @@ export default createStore({
     // REGISTER USER
     register: async (context, user) => {
       fetch("https://xcjewels.herokuapp.com/users/register", {
-        // fetch("http://localhost:5001/users/register", {
         method: "POST",
         body: JSON.stringify(user),
         // mode: cors,
@@ -121,7 +120,6 @@ export default createStore({
         .then((data) => {
           console.log(data);
           context.commit('setJwt', data.jwt)
-          // context.commit("setUser", json));
         });
     },
 

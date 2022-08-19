@@ -36,22 +36,11 @@
           />
         </svg>
       </button>
-      <button
-        class="profile-btn"
-        @click="
-          $router.push({ name: 'profile', params: { id: $route.params.id } })
-        "
-        v-for="user of users"
-        :key="user.id"
-        :user="user"
-      >
-        <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" />
-        <span v-if="isLoggedIn">{{ user.name }}</span>
-        <span v-else>
-          <router-link to="/login">Login</router-link>
-          <router-link>Register</router-link>
-        </span>
-      </button>
+      <div v-if="user" class="user-button">
+        <router-link to="/profile"><img src="https://assets.codepen.io/3306515/IMG_2025.jpg" />
+        <p>{{ user.fullname }}</p>
+        </router-link></div>
+          <router-link to="/"  v-else><span>Login</span></router-link>
     </div>
     <button class="messages-btn">
       <svg
@@ -88,11 +77,12 @@ export default {
       dark: false,
     };
   },
+  computed: {
+    user() {
+      return this.$store.state.user
+    }
+  },
   mounted() {
-    // axios.get("https://xcjewels.herokuapp.com/users").then((response) => {
-    //   console.log(response.data);
-    //   this.products = response.data;
-    // });
   },
   methods: {
     changeTheme() {
@@ -154,11 +144,36 @@ export default {
         text-decoration: none;
       }
     }
-
-    &-right button {
-      margin-left: 10px;
+&-right {
+  gap: 1rem;
+  width: 15%;
+  padding-right: 1rem;
+  button {
+    border-right: 0.05rem solid var(--main-color);
+    padding-right: 0.5rem;
+  }
+  .user-button {
+    display: flex;
+    align-items: center;
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    gap: 1rem;
+      p {
+      font-weight: 400;
+      margin-bottom: 0;
+      color: var(--main-color);
+    }
+    img {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
     }
   }
+ 
+    }
+  }}
 
   &-icon {
     width: 26px;

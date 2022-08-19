@@ -206,7 +206,7 @@ computed: {
 .login-overlay {
   width: 100vw;
   height: 100vh;
-  z-index: 20;
+  z-index: 2001;
   position: fixed;
   display: flex;
   justify-content: center;

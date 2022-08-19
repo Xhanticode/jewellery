@@ -16,6 +16,10 @@
             <input type="text" placeholder="Bio" />
             <button>Logout</button>
           </div>
+          <div v-if="user" class="cart-side">
+            <h4>Cart</h4>
+            <p>Your cart is empty. <router-link to="/products">Shop now!</router-link></p>
+          </div>
           </div>
         </div>
       </div>
@@ -100,4 +104,14 @@ export default {
       font-family: var(--p-font);
     }
 }
+.cart-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-left: 2rem;
+  a {
+    color: main color;
+    text-decoration: none;
+  }
+  }
 </style>
