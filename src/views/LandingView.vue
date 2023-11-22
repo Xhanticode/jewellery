@@ -1,10 +1,10 @@
 <template>
   <div class="landing-container">
-    <div v-if="!user" class="login-overlay">
+    <!-- <div v-if="!user" class="login-overlay">
       <Login id="login-form" />
       <div id="top-overlay"></div>
       <div id="bottom-overlay"></div>
-    </div>
+    </div> -->
     <div class="moving-products-grid">
       <div class="cover-text">
         <h1>Spring/Summer collection '22</h1>

@@ -2,7 +2,7 @@
   <div class="app-header">
     <div class="app-header-left">
       <router-link to="/"><p class="app-name">
-        <svg
+        <!-- <svg
           width="27"
           height="27"
           viewBox="0 0 27 27"
@@ -13,11 +13,11 @@
             d="M21.6 15.3C21.6 19.7735 17.9735 23.4 13.5 23.4C9.02646 23.4 5.4 19.7735 5.4 15.3C5.4 11.9731 7.40952 9.12078 10.2778 7.8741L10.5948 8.1207L11.9878 9.20412C9.24588 9.88596 7.2 12.35 7.2 15.3C7.2 18.7738 10.0262 21.6 13.5 21.6C16.9738 21.6 19.8 18.7738 19.8 15.3C19.8 12.35 17.7541 9.88596 15.0122 9.20412L16.7222 7.87428C19.5905 9.12096 21.6 11.9731 21.6 15.3ZM13.5 8.1L18 4.5999L16.2 1.8H10.8L9 4.5999L11.7 6.69996L13.5 8.1Z"
             fill="black"
           />
-        </svg>
-        Jewels
+        </svg> -->
+        X H V N T I
       </p></router-link>
     </div>
-    <div class="app-header-right">
+    <!-- <div class="app-header-right">
       <button class="mode-switch" title="Switch Theme" @click="changeTheme">
         <svg
           width="30"
@@ -59,7 +59,7 @@
           d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
         />
       </svg>
-    </button>
+    </button> -->
   </div>
 </template>
 <script>
